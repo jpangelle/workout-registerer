@@ -1,4 +1,7 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const { logError } = require('./logError');
+
+dotenv.config();
 
 async function login(page) {
   try {

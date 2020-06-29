@@ -1,9 +1,11 @@
+const dotenv = require('dotenv');
 const puppeteer = require('puppeteer');
 const { DateTime } = require('luxon');
-require('dotenv').config();
 const { login } = require('./login');
 const { sendMessage } = require('./sendMessage');
 const { logError } = require('./logError');
+
+dotenv.config();
 
 async function joinWorkout(page, signUpDate) {
   await page.click(
@@ -30,7 +32,6 @@ async function joinWorkout(page, signUpDate) {
 
 async function signUpForWorkout() {
   const signUpDate = DateTime.local().plus({ days: 1 }).toFormat('MM/dd/yyyy');
-
   try {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -43,14 +44,10 @@ async function signUpForWorkout() {
         waitUntil: 'networkidle2',
       },
     );
-
     await login(page);
-
     try {
       await joinWorkout(page, signUpDate);
-
       const message = `You have been signed up for the 8:00 AM workout on ${signUpDate}`;
-
       await sendMessage(message);
     } catch (error) {
       logError({
@@ -58,7 +55,6 @@ async function signUpForWorkout() {
         message: 'error joining workout',
       });
     }
-
     await browser.close();
   } catch (error) {
     logError({

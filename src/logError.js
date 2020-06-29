@@ -9,8 +9,8 @@ const logError = error => {
   fs.writeFile(
     path.join(__dirname, 'error-logs', fileName),
     errorMessage,
-    error => {
-      if (!error) {
+    writeError => {
+      if (!writeError) {
         console.log('An error was logged!');
       }
     },
