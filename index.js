@@ -68,18 +68,4 @@ async function signUpForWorkout() {
   }
 }
 
-setInterval(() => {
-  const dt = DateTime.local();
-  const weekday = dt.weekday;
-
-  // in between 8:30am and 9:30am
-  const isSignUpTime =
-    (dt.hour >= 8 && dt.minute >= 30) || (dt.hour <= 9 && dt.minute <= 30);
-
-  // sign up on Monday, Wednesday, or Saturday
-  const signUpDays = [1, 3, 6];
-
-  if (signUpDays.includes(weekday) && isSignUpTime) {
-    signUpForWorkout();
-  }
-}, 1000 * 60 * 60);
+signUpForWorkout();
