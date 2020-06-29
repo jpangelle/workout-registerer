@@ -31,11 +31,11 @@ async function joinWorkout(page, signUpDate) {
 }
 
 async function signUpForWorkout() {
-  const signUpDate = DateTime.local().plus({ days: 1 }).toFormat('MM/dd/yyyy');
+  const signUpDate = DateTime.local().plus({ days: 2 }).toFormat('MM/dd/yyyy');
   try {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false,
+      // headless: false,
     });
     const page = await browser.newPage();
     await page.goto(
