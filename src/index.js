@@ -35,6 +35,7 @@ async function signUpForWorkout() {
   try {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: 'chromium-browser',
       // headless: false,
     });
     const page = await browser.newPage();
