@@ -42,7 +42,7 @@ async function signUpForWorkout() {
     await login(page);
     try {
       await joinWorkout(page);
-      const message = `You have been signed up for the 8:00 AM workout on ${signUpDate}.`;
+      const message = `Prepare to get JACKED ᕦ(ò_óˇ)ᕤ at 8:00 AM on ${signUpDate}.`;
       await sendMessage(message);
     } catch (error) {
       logError({
